@@ -31,7 +31,7 @@
     "grunt-cli": "^0.1.13"
   },
   "scripts": {
-    "postinstall": ".\\node_modules\\.bin\\grunt ts",
+    "postinstall": ".\\node_modules\\.bin\\tsd reinstall --overwrite && .\\node_modules\\.bin\\grunt ts",
     "start": "node server.js",
     "prestart": "grunt ts"
   }

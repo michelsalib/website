@@ -1,6 +1,7 @@
 .idea
 node_modules
-!typings
+typings
+!typings/tsd.d.ts
 *.js.map
 *.js
 !Gruntfile.js
