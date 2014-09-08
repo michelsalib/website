@@ -1,0 +1,21 @@
+{
+  "name": "website-beta",
+  "version": "0.0.0",
+  "description": "website-beta",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michelsalib/website-beta"
+  },
+  "author": "michelsalib@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michelsalib/website-beta/issues"
+  },
+  "homepage": "https://github.com/michelsalib/website-beta",
+  "dependencies": {
+    "express": "^4.8.8",
+    "q": "^1.0.1",
+    "request": "^2.42.0"
+  }
+}
