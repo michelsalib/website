@@ -36,9 +36,9 @@ class SoundCloud {
                     result += '<item>\
                         <title>' + t.title + '</title>\
                         <link>' + t.permalink_url + '</link>\
-                        <guid>' + t.id + '</guid>\
+                        <guid>' + t.permalink_url + '</guid>\
                         <description>' + t.description + '</description>\
-                        <enclosure url="' + t.download_url + '?client_id=' + this.soundCloudClientId + '" length="' + t.original_content_size + '" type="audio/mpeg"/>\
+                        <enclosure url="' + t.permalink_url + '/download" length="0" type="audio/mpeg"/>\
                         <category>Podcasts</category>\
                         <pubDate>' + t.created_at + '</pubDate>\
                         <itunes:image href="' + t.artwork_url + '"/>\
