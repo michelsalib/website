@@ -55,7 +55,11 @@ class Kernel {
         });
 
         server.get('/soundcloud/:user', (container: Container, req: express.Request) => {
-            return container.get('soundCloud').getTracks(req.param('user'));
+            return container.get('soundCloud').getTracks(req.param('user')).then(r => {
+                container.get('response').set('Content-Type', 'application/xml; charset=utf-8');
+
+                return r;
+            });
         });
 
     }

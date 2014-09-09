@@ -8,7 +8,6 @@ var methodOverride = require('method-override');
 import Kernel = require('./src/Kernel/Kernel');
 import Server = require('./src/Server/Server');
 
-
 var app = express();
 
 app.use(compression());

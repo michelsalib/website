@@ -4,6 +4,7 @@ import request = require('request');
 import Q = require('q');
 
 import IHttp = require('../Http/IHttp');
+import HttpResponse = require('../Http/HttpResponse');
 
 class SoundCloud {
 
@@ -12,9 +13,40 @@ class SoundCloud {
     }
 
     getTracks(user: string): Q.Promise<any> {
-        return this.http
-            .get('http://api.soundcloud.com/users/' + user + '/tracks.json?client_id=1a54317f399a23ae3f4234dc0f6fd2c7')
-            .then(r => JSON.parse(r.body));
+        return Q.all([
+                this.http.get('http://api.soundcloud.com/users/' + user + '.json?client_id=' + this.soundCloudClientId),
+                this.http.get('http://api.soundcloud.com/users/' + user + '/tracks.json?client_id=' + this.soundCloudClientId)
+            ])
+            .spread((userResponse: HttpResponse, tracksResponse: HttpResponse) => {
+                var user = JSON.parse(userResponse.body);
+                var tracks = JSON.parse(tracksResponse.body);
+
+                var result = '<?xml version="1.0" encoding="UTF-8"?>\
+                    <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">\
+                        <channel>\
+                        <title>' + user.username + '</title>\
+                        <description>' + user.description + '</description>\
+                        <link>http://www.podcast411.com</link>\
+                        <language>en-us</language>\
+                        <lastBuildDate>' + tracks[0].created_at + '</lastBuildDate>\
+                        <pubDate>' + tracks[0].created_at + '</pubDate>';
+
+                tracks.forEach(t => {
+                    result += '<item>\
+                        <title>' + t.title + '</title>\
+                        <link>' + t.permalink_url + '</link>\
+                        <guid>' + t.id + '</guid>\
+                        <description>' + t.description + '</description>\
+                        <enclosure url="' + t.download_url + '" length="' + t.original_content_size + '" type="audio/mpeg"/>\
+                        <category>Podcasts</category>\
+                        <pubDate>' + t.created_at + '</pubDate>\
+                    </item>';
+                });
+
+                result += '</channel></rss>';
+
+                return result;
+            });
     }
 }
 
