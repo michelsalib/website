@@ -26,10 +26,11 @@ class SoundCloud {
                         <channel>\
                         <title>' + user.username + '</title>\
                         <description>' + user.description + '</description>\
-                        <link>http://www.podcast411.com</link>\
+                        <link>' + user.website + '</link>\
                         <language>en-us</language>\
                         <lastBuildDate>' + tracks[0].created_at + '</lastBuildDate>\
-                        <pubDate>' + tracks[0].created_at + '</pubDate>';
+                        <pubDate>' + tracks[0].created_at + '</pubDate>\
+                        <itunes:image href="' + user.avatar_url + '"/>';
 
                 tracks.forEach(t => {
                     result += '<item>\
@@ -37,9 +38,10 @@ class SoundCloud {
                         <link>' + t.permalink_url + '</link>\
                         <guid>' + t.id + '</guid>\
                         <description>' + t.description + '</description>\
-                        <enclosure url="' + t.download_url + '" length="' + t.original_content_size + '" type="audio/mpeg"/>\
+                        <enclosure url="' + t.download_url + '?client_id=' + this.soundCloudClientId + '" length="' + t.original_content_size + '" type="audio/mpeg"/>\
                         <category>Podcasts</category>\
                         <pubDate>' + t.created_at + '</pubDate>\
+                        <itunes:image href="' + t.artwork_url + '"/>\
                     </item>';
                 });
 
