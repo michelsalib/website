@@ -1,9 +1,8 @@
 .idea
 node_modules
 typings
-!typings/tsd.d.ts
+src/**/*.js
 *.js.map
-*.js
-!server.js
 !Gruntfile.js
+!typings/tsd.d.ts
 conf.json
