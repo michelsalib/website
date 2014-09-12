@@ -1,12 +1,10 @@
-/// <reference path="./typings/tsd.d.ts" />
-
-import express = require('express');
+var express = require('express');
 var compression = require('compression');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-import Kernel = require('./src/Kernel/Kernel');
-import Server = require('./src/Server/Server');
+var Kernel = require('./src/Kernel/Kernel');
+var Server = require('./src/Server/Server');
 
 var app = express();
 

@@ -4,5 +4,6 @@ typings
 !typings/tsd.d.ts
 *.js.map
 *.js
+!server.js
 !Gruntfile.js
 conf.json
