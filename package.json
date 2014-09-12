@@ -33,6 +33,6 @@
   "scripts": {
     "postinstall": ".\\node_modules\\.bin\\tsd reinstall --overwrite && .\\node_modules\\.bin\\grunt ts",
     "start": "node server.js",
-    "prestart": "grunt ts"
+    "prestart": ".\\node_modules\\.bin\\grunt ts"
   }
 }
