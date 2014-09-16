@@ -41,6 +41,9 @@ class Kernel {
 
         // soundcloud
         this.container.service('soundCloud', require('../SoundCloud/SoundCloud'));
+
+        // subtitles
+        this.container.service('subtitles', require('../Subtitles/Addic7edSubtitles'));
     }
 
     setupServer(server: Server.IServer): void {
@@ -60,6 +63,24 @@ class Kernel {
 
                 return r;
             });
+        });
+
+        server.get('/subtitles', (container: Container, req: express.Request) => {
+            return container.get('subtitles').getSubtitles(req.query.show, req.query.season);
+        });
+
+        server.get('/link', (container: Container, req: express.Request) => {
+            return container.get('http').get(req.query.href, {
+                    headers: {
+                        referer: req.query.referer
+                    }
+                })
+                .then(r => {
+                    container.get('response').set('content-disposition', r.headers['content-disposition']);
+                    container.get('response').set('content-type', r.headers['content-type']);
+
+                    return r.body;
+                });
         });
 
     }

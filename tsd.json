@@ -14,14 +14,17 @@
     "express/express.d.ts": {
       "commit": "50dd84eb5d5593787b7686decf1476d094f5e13a"
     },
-    "jquery/jquery.d.ts": {
-      "commit": "50dd84eb5d5593787b7686decf1476d094f5e13a"
-    },
     "node/node.d.ts": {
       "commit": "50dd84eb5d5593787b7686decf1476d094f5e13a"
     },
     "form-data/form-data.d.ts": {
       "commit": "50dd84eb5d5593787b7686decf1476d094f5e13a"
+    },
+    "cheerio/cheerio.d.ts": {
+      "commit": "b0b4af1223f4f9449012688fa0c18f20cc3267e7"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "b0b4af1223f4f9449012688fa0c18f20cc3267e7"
     }
   }
 }

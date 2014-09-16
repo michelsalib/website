@@ -20,7 +20,7 @@ export interface IServer {
 export class ExpressServer implements IServer {
     private _setup: (req: express.Request, res: express.Response) => Container;
     private _tearDown: (container: Container, responseData: any) => any = (inj, data) => data;
-    private _error: (container: Container, error: Error) => any = (_, e) => { return { error: { message: e.message } } };
+    private _error: (container: Container, error: Error) => any = (_, e) => { return { error: { message: e.message, stack: (<any>e).stack.split('\n') } } };
 
     handle(handler: IServerCallback, req: express.Request, res: express.Response): void {
         var container = this._setup(req, res);
@@ -40,7 +40,8 @@ export class ExpressServer implements IServer {
                 res.status(500);
                 res.send({
                     error: {
-                        message: err.toString()
+                        message: err.message,
+                        stack: (<any>err).stack.split('\n')
                     }
                 });
             });
