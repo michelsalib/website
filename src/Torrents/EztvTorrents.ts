@@ -87,7 +87,7 @@ class EztvTorrents {
                             return result;
                         }, []);
                     })
-                    .then(() => show/*, err => show*/);
+                    .then(() => show, err => show);
             });
     }
 }
