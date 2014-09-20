@@ -6,8 +6,8 @@ import cheerio = require('cheerio');
 
 import IHttp = require('../Http/IHttp');
 import HttpResponse = require('../Http/HttpResponse');
-import IShow = require('./IShow');
-import IEpisode = require('./IEpisode');
+import IShow = require('../Model/IShow');
+import IEpisode = require('../Model/IEpisode');
 
 class Addic7edSubtitles {
 

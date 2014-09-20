@@ -44,6 +44,9 @@ class Kernel {
 
         // subtitles
         this.container.service('subtitles', require('../Subtitles/Addic7edSubtitles'));
+
+        // torrentz
+        this.container.service('torrents', require('../Torrents/EztvTorrents'));
     }
 
     setupServer(server: Server.IServer): void {
@@ -67,6 +70,10 @@ class Kernel {
 
         server.get('/subtitles', (container: Container, req: express.Request) => {
             return container.get('subtitles').getSubtitles(req.query.show, req.query.season);
+        });
+
+        server.get('/torrents', (container: Container, req: express.Request) => {
+            return container.get('torrents').getTorrents(req.query.show, req.query.season);
         });
 
         server.get('/link', (container: Container, req: express.Request) => {
