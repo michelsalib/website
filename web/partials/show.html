@@ -1,0 +1,26 @@
+<div class="row show-title page-header" ng-show="response" style="background-image: url('{{response.images.fanart}}')">
+    <div class="container">
+        <div class="row">
+            <h1>{{ response.title }}</h1>
+            <p class="lead">{{ response.overview }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="row" ng-show="loading">
+        <div class="col-md-12">
+            <p class="lead text-center">Looking for {{ show }}...</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="error">
+        <div class="alert alert-danger">
+            <h4>{{show}} not found!</h4>
+            <p><a ng-href="#/tv" class="alert-link">Change a few things up</a> and try submitting again.</p>
+        </div>
+    </div>
+
+</div>

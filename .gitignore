@@ -2,6 +2,8 @@
 node_modules
 typings
 src/**/*.js
+web/**/*.js
+**/*.xml
 *.js.map
 !Gruntfile.js
 !typings/tsd.d.ts

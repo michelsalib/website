@@ -5,3 +5,4 @@
 /// <reference path="form-data/form-data.d.ts" />
 /// <reference path="cheerio/cheerio.d.ts" />
 /// <reference path="jquery/jquery.d.ts" />
+/// <reference path="angularjs/angular.d.ts" />

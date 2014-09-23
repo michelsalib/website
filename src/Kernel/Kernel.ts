@@ -47,6 +47,9 @@ class Kernel {
 
         // torrentz
         this.container.service('torrents', require('../Torrents/EztvTorrents'));
+
+        // tv
+        this.container.service('tv', require('../Tv/TraktTv'));
     }
 
     setupServer(server: Server.IServer): void {
@@ -58,6 +61,10 @@ class Kernel {
             container.constant('response', response);
 
             return container;
+        });
+
+        server.get('/tv/:show', (container: Container, req: express.Request) => {
+            return container.get('tv').getShow(req.param('show'));
         });
 
         server.get('/soundcloud/:user', (container: Container, req: express.Request) => {

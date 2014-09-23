@@ -1,6 +1,5 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
-import request = require('request');
 import Q = require('q');
 import cheerio = require('cheerio');
 
