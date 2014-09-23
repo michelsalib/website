@@ -1,14 +1,54 @@
-<div class="show-title page-header" ng-show="response" style="background-image: url('{{response.images.fanart}}')">
-    <div class="container">
-        <h1>{{ response.title }}</h1>
-        <p class="lead">{{ response.overview }}</p>
+<div class="show-background" ng-show="info" style="background-image: url('{{info.images.fanart}}')">
+
+</div>
+
+<div class="container show-content" ng-show="info">
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ info.title }} <small>{{ info.genres.join(', ') }}</small></h1>
+            <p class="lead">{{ info.overview }} <a href="" data-toggle="collapse" data-target="#more">more...</a></p>
+        </div>
     </div>
+
+    <div class="row collapse" id="more">
+        <img src="{{ info.poster }}" class="hidden-sm hidden-xs col-md-4" />
+        <div class="col-md-4">
+            <h4>Details</h4>
+            <dl class="dl-horizontal">
+                <dt>Year</dt>
+                <dd>{{ info.year }}</dd>
+                <dt>Country</dt>
+                <dd>{{ info.country }}</dd>
+                <dt>Network</dt>
+                <dd>{{ info.network }}</dd>
+                <dt>Status</dt>
+                <dd>{{ info.status }}</dd>
+                <dt>Air time</dt>
+                <dd>{{ info.air_day }} at {{ info.air_time }}</dd>
+                <dt>Runtime</dt>
+                <dd>{{ info.runtime }}min</dd>
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <h4>Starring</h4>
+            <dl class="dl-horizontal">
+                <span ng-repeat="actor in info.people.actors">
+                    <dt>{{ actor.name || 'unknown' }}</dt>
+                    <dd>{{ actor.character || 'unknown' }}</dd>
+                </span>
+            </dl>
+        </div>
+    </div>
+
+    <div ms-torrents="show"></div>
+
 </div>
 
 <div class="container">
 
     <div class="row" ng-show="loading">
-        <div class="col-md-12">
+        <div class="col-md-12 page-header">
             <p class="lead text-center">Looking for {{ show }}...</p>
             <div class="spinner"></div>
         </div>

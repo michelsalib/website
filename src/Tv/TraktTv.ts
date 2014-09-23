@@ -20,14 +20,14 @@ class TraktTv {
         return Q.all([
             this.http.get('http://api.trakt.tv/show/summary.json/' + this.traktTvId + '/' + query, {
                 qs: {
-                    extended: true
+                    //extended: true
                 }
-            }).then(r => JSON.parse(r.body)),
+            }).then(r => JSON.parse(r.body))/*,
             this.http.get('http://api.trakt.tv/show/seasons.json/' + this.traktTvId + '/' + query, {
                 qs: {
                     extended: true
                 }
-            }).then(r => JSON.parse(r.body))
+            }).then(r => JSON.parse(r.body))*/
         ]).spread((summary, seasons) => {
             summary.seasons = seasons;
 

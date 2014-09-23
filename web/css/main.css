@@ -2,20 +2,46 @@ body {
     padding-top: 0px;
 }
 
+.episode {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+}
+
+.episode > * {
+    display: inline-block;
+}
+
+.number{
+    width: 50px;
+    height: 50px;
+    font-size: 3em;
+    margin-right: 5px;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.torrent {
+    font-size: 1.2em;
+}
+
 .navbar {
     border-radius: 0px;
 }
 
-.page-header h1 {
-    font-size: 4em;
-}
-
-.show-title {
+.show-background {
     margin-top: -21px;
-    height: 450px;
+    height: 600px;
 
     background: no-repeat center top fixed;
     background-size: cover;
+}
+
+.show-content {
+    margin-top: -150px;
+    background: #222222;
 }
 
 .spinner {
