@@ -16,6 +16,10 @@ body {
     cursor: pointer;
 }
 
+.episode img {
+    max-width: 100%;
+}
+
 .navbar {
     border-radius: 0px;
 }
