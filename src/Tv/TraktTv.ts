@@ -17,22 +17,9 @@ class TraktTv {
     getShow(show: string): Q.Promise<any> {
         var query = S(show).slugify().s;
 
-        return Q.all([
-            this.http.get('http://api.trakt.tv/show/summary.json/' + this.traktTvId + '/' + query, {
-                qs: {
-                    //extended: true
-                }
-            }).then(r => JSON.parse(r.body))/*,
-            this.http.get('http://api.trakt.tv/show/seasons.json/' + this.traktTvId + '/' + query, {
-                qs: {
-                    extended: true
-                }
-            }).then(r => JSON.parse(r.body))*/
-        ]).spread((summary, seasons) => {
-            summary.seasons = seasons;
-
-            return summary;
-        });
+        return this.http
+            .get('http://api.trakt.tv/show/summary.json/' + this.traktTvId + '/' + query + '/extended')
+            .then(r => JSON.parse(r.body));
     }
 
 }
