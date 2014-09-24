@@ -49,7 +49,7 @@
                 <img src="{{ season.poster }}" class="hidden-sm hidden-xs col-md-3"/>
 
                 <div class="col-md-9">
-                    <div ng-repeat="episode in season.episodes|orderBy:'episode':false" class="row episode">
+                    <div ng-repeat="episode in season.episodes|orderBy:'episode':true" class="row episode">
                         <div class="col-md-12">
                             <h3 data-toggle="collapse" data-target="#episode-{{ episode.season }}-{{ episode.episode }}">
                                 <div class="number bg-success">{{ episode.episode }}</div>
