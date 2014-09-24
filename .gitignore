@@ -8,3 +8,4 @@ web/**/*.js
 !Gruntfile.js
 !typings/tsd.d.ts
 conf.json
+db.sqlite3

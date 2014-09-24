@@ -37,7 +37,8 @@ class Kernel {
     private loadServices(): void {
         // http
         this.container.factory('requestLib', () => { return require('request'); });
-        this.container.service('http', require('../Http/Http'));
+        this.container.service('rawHttp', require('../Http/Http'));
+        this.container.service('http', require('../Http/CachedHttp'));
 
         // soundcloud
         this.container.service('soundCloud', require('../SoundCloud/SoundCloud'));
@@ -50,6 +51,9 @@ class Kernel {
 
         // tv
         this.container.service('tv', require('../Tv/TraktTv'));
+
+        // cache
+        this.container.service('cache', require('../Storage/Cache'));
     }
 
     setupServer(server: Server.IServer): void {
@@ -84,7 +88,7 @@ class Kernel {
         });
 
         server.get('/link', (container: Container, req: express.Request) => {
-            return container.get('http').get(req.query.href, {
+            return container.get('rawHttp').get(req.query.href, {
                     headers: {
                         referer: req.query.referer
                     }

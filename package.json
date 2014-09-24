@@ -31,7 +31,8 @@
     "compression": "^1.1.0",
     "grunt-cli": "^0.1.13",
     "cheerio": "~0.17.0",
-    "string": "^2.1.0"
+    "string": "^2.1.0",
+    "sqlite3": "^3.0.0"
   },
   "scripts": {
     "postinstall": ".\\node_modules\\.bin\\tsd reinstall --overwrite && .\\node_modules\\.bin\\grunt ts",
