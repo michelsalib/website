@@ -40,18 +40,22 @@ class EztvTorrents {
                         var episodes: IEpisode[] = [];
 
                         r.each((i) =>{
-                            var torrentFields = r.eq(i).find('td');
-                            var episodeFields = /(.+) s?(\d+)[ex](\d+)(e(\d+))? (\d+p )?(.*)/i.exec(torrentFields.eq(1).text());
+                            try {
+                                var torrentFields = r.eq(i).find('td');
+                                var episodeFields = /(.+) s?(\d+)[ex](\d+)(e(\d+))? (\d+p )?(.*)/i.exec(torrentFields.eq(1).text());
 
-                            episodes.push({
-                                season: parseInt(episodeFields[2]),
-                                number: parseInt(episodeFields[3]),
-                                torrents: [{
-                                    version: episodeFields[7],
-                                    hd: !!episodeFields[6],
-                                    link: torrentFields.eq(2).find('a.magnet').attr('href')
-                                }]
-                            });
+                                episodes.push({
+                                    season: parseInt(episodeFields[2]),
+                                    number: parseInt(episodeFields[3]),
+                                    torrents: [{
+                                        version: episodeFields[7],
+                                        hd: !!episodeFields[6],
+                                        link: torrentFields.eq(2).find('a.magnet').attr('href')
+                                    }]
+                                });
+                            } catch(err) {
+                                // ignore torrent field
+                            }
                         });
 
                         episodes = episodes.reduce((result: IEpisode[], current: IEpisode) => {
