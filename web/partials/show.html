@@ -41,7 +41,42 @@
         </div>
     </div>
 
-    <div ms-torrents="show"></div>
+    <div class="row" ng-repeat="season in info.seasons">
+        <div class="col-md-12">
+            <h2>Season {{ season.season }}</h2>
+
+            <div class="row">
+                <img src="{{ season.poster }}" class="hidden-sm hidden-xs col-md-3"/>
+
+                <div class="col-md-9">
+                    <div ng-repeat="episode in season.episodes|orderBy:'episode':false" class="row episode">
+                        <div class="col-md-12">
+                            <h3 data-toggle="collapse" data-target="#episode-{{ episode.season }}-{{ episode.episode }}">
+                                <div class="number bg-success">{{ episode.episode }}</div>
+                                {{ episode.title }}
+                                <small><a href="">more...</a></small>
+                            </h3>
+                        </div>
+
+                        <div id="episode-{{ episode.season }}-{{ episode.episode }}" class="collapse col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p><em>Aired on {{ episode.first_aired|date:'medium' }}.</em></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <img src="{{ episode.screen }}" class="col-md-4"/>
+                                <div class="col-md-8">
+                                    <p>{{ episode.overview }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </div>
 
