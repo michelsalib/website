@@ -11,6 +11,8 @@ class Cache {
         var db = new sqlite3.Database('db.sqlite3');
 
         db.serialize(() => {
+            db.run('PRAGMA journal_mode = WAL');
+
             db.run('CREATE TABLE IF NOT EXISTS cache (key TEXT PRIMARY KEY, datetime INTEGER, value TEXT)');
 
             db.run('DELETE FROM cache WHERE datetime < ?', (new Date().getTime() - this.ttl));

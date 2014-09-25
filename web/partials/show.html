@@ -74,18 +74,28 @@
                                 <div class="col-md-4">
                                     <h4>Subtitles</h4>
                                     <ul class="list-unstyled">
-                                        <div ng-repeat="subtitle in subtitles|filter:episodeMatcher(episode.season, episode.episode)">
-                                            <a>{{ subtitle.version }}</a>
+                                        <div ng-repeat="subtitle in items = (subtitles|filter:episodeMatcher(episode.season, episode.episode)|orderBy:version)">
+                                            <a href="{{ subtitle.link }}">
+                                                <span ng-if="subtitle.hd" class="glyphicon glyphicon-hd-video"></span>
+                                                <span ng-if="subtitle.verified" class="glyphicon glyphicon-ok"></span>
+                                                <span ng-if="subtitle.hearingImpared" class="glyphicon glyphicon glyphicon-volume-off"></span>
+                                                {{ subtitle.version }}
+                                            </a>
                                         </div>
+                                        <em ng-if="!items.length">no subtitle...</em>
                                     </ul>
                                 </div>
                                 <div class="col-md-4">
                                     <h4>Downloads</h4>
                                     <ul class="list-unstyled">
-                                        <div ng-repeat="torrent in torrents|filter:episodeMatcher(torrent.season, torrent.episode)">
-                                            <a>{{ torrent.version }}</a>
+                                        <div ng-repeat="torrent in items = (torrents|filter:episodeMatcher(episode.season, episode.episode)|orderBy:version)">
+                                            <a href="{{ torrent.link }}">
+                                                <span ng-if="torrent.hd" class="glyphicon glyphicon-hd-video"></span>
+                                                {{ torrent.version }}
+                                            </a>
                                         </div>
                                     </ul>
+                                    <em ng-if="!items.length">no download...</em>
                                 </div>
                             </div>
                         </div>

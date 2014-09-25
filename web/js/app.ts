@@ -88,6 +88,10 @@ app.config(($routeProvider, $locationProvider) => {
     });
 });
 
+app.config(($compileProvider) => {
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|magnet):/);
+});
+
 app.directive('msEnter', () => (scope, element, attrs) => {
     element.bind("keydown keypress", event => {
         if (event.which === 13) {
