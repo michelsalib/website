@@ -61,7 +61,7 @@
                         <div id="episode-{{ episode.season }}-{{ episode.episode }}" class="collapse col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p><em>Aired on {{ episode.first_aired|date:'medium' }}.</em></p>
+                                    <p><em>{{ episode.first_aired_iso|date:'medium' }}</em></p>
                                 </div>
                             </div>
                             <div class="row">
