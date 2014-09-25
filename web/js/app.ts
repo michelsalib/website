@@ -13,6 +13,7 @@ module MichelSalib {
         }
 
         export interface ITvScope extends IAppScope {
+            shows: any;
             goToShow(show: string): void;
         }
 
@@ -33,7 +34,10 @@ module MichelSalib {
         }
 
         export class TvController {
-            constructor(private $scope:ITvScope, private $location: ng.ILocationService) {
+            constructor(private $scope:ITvScope, private $location: ng.ILocationService, private $http: ng.IHttpService) {
+                $http.get('/tv/trending/')
+                    .then(r => $scope.shows = r.data);
+
                 $scope.goToShow = (show:string) => {
                     $location.path('/tv/' + show);
                 };
@@ -45,15 +49,15 @@ module MichelSalib {
                 $scope.show = $routeParams.show;
                 $scope.loading = true;
 
-                $http.get('/tv/' + $scope.show)
+                $http.get('/tv/shows/' + $scope.show)
                     .then(r => $scope.info = r.data)
                     .catch(err => $scope.error = err)
                     .finally(() => $scope.loading = false);
 
-                $http.get('/torrents/' + $scope.show)
+                $http.get('/tv/torrents/' + $scope.show)
                     .then(r => $scope.torrents = r.data);
 
-                $http.get('/subtitles/' + $scope.show)
+                $http.get('/tv/subtitles/' + $scope.show)
                     .then(r => $scope.subtitles = r.data);
 
                 $scope.episodeMatcher = (season, episode) => (item) => item.season == season && item.episode == episode;
@@ -100,3 +104,6 @@ app.directive('msEnter', () => (scope, element, attrs) => {
         }
     });
 });
+
+app.filter('isFuture', () => (date) => parseInt(date) > new Date().getTime() / 1000);
+

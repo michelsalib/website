@@ -67,8 +67,12 @@ class Kernel {
             return container;
         });
 
-        server.get('/tv/:show', (container: Container, req: express.Request) => {
+        server.get('/tv/shows/:show', (container: Container, req: express.Request) => {
             return container.get('tv').getShow(req.param('show'));
+        });
+
+        server.get('/tv/trending', (container: Container, req: express.Request) => {
+            return container.get('tv').getTrending();
         });
 
         server.get('/soundcloud/:user', (container: Container, req: express.Request) => {
@@ -79,11 +83,11 @@ class Kernel {
             });
         });
 
-        server.get('/subtitles/:show', (container: Container, req: express.Request) => {
+        server.get('/tv/subtitles/:show', (container: Container, req: express.Request) => {
             return container.get('subtitles').getSubtitles(req.param('show'));
         });
 
-        server.get('/torrents/:show', (container: Container, req: express.Request) => {
+        server.get('/tv/torrents/:show', (container: Container, req: express.Request) => {
             return container.get('torrents').getTorrents(req.param('show'));
         });
 

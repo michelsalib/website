@@ -22,6 +22,12 @@ class TraktTv {
             .then(r => JSON.parse(r.body));
     }
 
+    getTrending(): Q.Promise<any> {
+        return this.http
+            .get('http://api.trakt.tv/shows/trending.json/' + this.traktTvId)
+            .then(r => JSON.parse(r.body));
+    }
+
 }
 
 export = TraktTv;

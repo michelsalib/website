@@ -52,7 +52,10 @@
                     <div ng-repeat="episode in season.episodes|orderBy:'episode':true" class="row episode">
                         <div class="col-md-12">
                             <h3 data-toggle="collapse" data-target="#episode-{{ episode.season }}-{{ episode.episode }}">
-                                <div class="number bg-success">{{ episode.episode }}</div>
+                                <div class="number" ng-class="{
+                                    'bg-default': (episode.first_aired|isFuture),
+                                    'bg-success': !(episode.first_aired|isFuture)
+                                }">{{ episode.episode }}</div>
                                 {{ episode.title }}
                                 <small><a href="">more...</a></small>
                             </h3>
