@@ -70,6 +70,24 @@
                                     <p>{{ episode.overview }}</p>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h4>Subtitles</h4>
+                                    <ul class="list-unstyled">
+                                        <div ng-repeat="subtitle in subtitles|filter:episodeMatcher(episode.season, episode.episode)">
+                                            <a>{{ subtitle.version }}</a>
+                                        </div>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h4>Downloads</h4>
+                                    <ul class="list-unstyled">
+                                        <div ng-repeat="torrent in torrents|filter:episodeMatcher(torrent.season, torrent.episode)">
+                                            <a>{{ torrent.version }}</a>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
