@@ -1,7 +1,9 @@
 interface ITorrent {
-	link: string;
-	version: string;
-	hd: boolean;
+    episode: number;
+    season: number;
+    link: string;
+    version: string;
+    hd: boolean;
 }
 
 export = ITorrent;

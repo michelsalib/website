@@ -79,12 +79,12 @@ class Kernel {
             });
         });
 
-        server.get('/subtitles', (container: Container, req: express.Request) => {
-            return container.get('subtitles').getSubtitles(req.query.show, req.query.season);
+        server.get('/subtitles/:show', (container: Container, req: express.Request) => {
+            return container.get('subtitles').getSubtitles(req.param('show'));
         });
 
-        server.get('/torrents', (container: Container, req: express.Request) => {
-            return container.get('torrents').getTorrents(req.query.show, req.query.season);
+        server.get('/torrents/:show', (container: Container, req: express.Request) => {
+            return container.get('torrents').getTorrents(req.param('show'));
         });
 
         server.get('/link', (container: Container, req: express.Request) => {
