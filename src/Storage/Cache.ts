@@ -5,7 +5,7 @@ import Q = require('q');
 
 class Cache {
 
-    private ttl = 1000 * 60 * 60; // 1h
+    private ttl = 1000 * 60 * 60 * 6; // 6h
 
     constructor() {
         var db = new sqlite3.Database('db.sqlite3');
