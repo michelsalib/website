@@ -18,8 +18,11 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3" ng-repeat="show in shows|limitTo:20">
-            <a class="tile" ng-href="#/tv/{{ show.title }}" style="background-image: url('{{show.images.fanart}}')">{{ show.title }}</a>
+        <div class="col-md-3 tile" ng-repeat="show in shows|limitTo:20">
+            <a ng-href="#/tv/{{ show.title }}">
+                <h3 class="bg-default">{{ show.title }}</h3>
+                <div style="background-image: url('{{show.images.fanart}}')"></div>
+            </a>
         </div>
     </div>
 

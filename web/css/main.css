@@ -2,11 +2,48 @@ body {
     padding-top: 0px;
 }
 
-.tile{
+.tile.ng-enter {
+    transition: all 200ms ease;
+    transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+    opacity:0;
+}
+.tile.ng-enter-stagger {
+    transition-delay: 0.1s;
+    transition-duration: 0s;
+}
+.tile.ng-enter.ng-enter-active {
+    transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+    opacity: 1;
+}
+
+.tile a {
     display: block;
     margin-top: 30px;
+}
+
+.tile div {
     height: 125px;
     background-size: cover;
+}
+
+.tile h3 {
+    padding: 10px;
+    margin: 0px;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    display: inline-block;
+    max-width: 100%;
+
+    position: absolute;
+    top: 90px;
+    left: 0px;
+}
+
+.tile a:hover {
+    text-decoration: none;
 }
 
 .bg-default {

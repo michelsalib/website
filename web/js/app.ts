@@ -66,7 +66,7 @@ module MichelSalib {
     }
 }
 
-var app = angular.module('michel-salib', ['ngRoute', 'ngCookies']);
+var app = angular.module('michel-salib', ['ngAnimate', 'ngRoute', 'ngCookies']);
 
 app.controller('AppController', MichelSalib.Controllers.AppController);
 
