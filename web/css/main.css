@@ -72,17 +72,18 @@ body {
     border-radius: 0px;
 }
 
-.show-background {
-    margin-top: -21px;
-    height: 600px;
-
-    background: no-repeat center top fixed;
+body {
+    background: no-repeat center top fixed #222222;
     background-size: cover;
 }
 
+.show-background {
+    height: 100vh;
+}
+
 .show-content {
-    margin-top: -150px;
     background: #222222;
+    margin-top: -160px;
 }
 
 .spinner {

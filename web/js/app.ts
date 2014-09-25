@@ -10,6 +10,7 @@ module MichelSalib {
 
         export interface IAppScope extends ng.IScope {
             route: string;
+            background: string;
         }
 
         export interface ITvScope extends IAppScope {
@@ -25,11 +26,16 @@ module MichelSalib {
             error: any;
             loading: boolean;
             episodeMatcher(season, episode): (item) => boolean;
+
+            $parent: IAppScope;
         }
 
         export class AppController {
             constructor(private $scope:IAppScope, private $route) {
-                $scope.$on('$routeChangeSuccess', () => $scope.route = $route.current.locals.name);
+                $scope.$on('$routeChangeSuccess', () => {
+                    $scope.route = $route.current.locals.name;
+                    $scope.background = null;
+                });
             }
         }
 
@@ -50,7 +56,10 @@ module MichelSalib {
                 $scope.loading = true;
 
                 $http.get('/tv/shows/' + $scope.show)
-                    .then(r => $scope.info = r.data)
+                    .then(r => {
+                        $scope.info = r.data;
+                        $scope.$parent.background = $scope.info.images.fanart;
+                    })
                     .catch(err => $scope.error = err)
                     .finally(() => $scope.loading = false);
 
@@ -105,5 +114,5 @@ app.directive('msEnter', () => (scope, element, attrs) => {
     });
 });
 
-app.filter('isFuture', () => (date) => parseInt(date) > new Date().getTime() / 1000);
+app.filter('isFuture', () => (date) => !date || parseInt(date) > new Date().getTime() / 1000);
 
