@@ -1,7 +1,16 @@
 /// <reference path="../../typings/tsd.d.ts" />
 
+declare var Bloodhound: any;
+
 $(document).on('mouseenter', '[data-toggle="tooltip"]', (e) => {
     (<any>$)(e.currentTarget).tooltip('show');
+});
+
+var tvShowsSuggestions = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: '/tv/trending',
+  remote: '/tv/suggest/%QUERY'
 });
 
 module MichelSalib {
@@ -112,6 +121,34 @@ app.directive('msEnter', () => (scope, element, attrs) => {
             event.preventDefault();
         }
     });
+});
+
+app.directive('msSuggest', ($parse) => {
+    return {
+        link: ($scope, $element: any, $attrs) => {
+            var model = $parse($attrs.msSuggest);
+
+            tvShowsSuggestions.initialize();
+
+            $element.typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 2
+            },
+            {
+                name: 'tv-shows',
+                displayKey: 'title',
+                templates: {
+                    suggestion: (item) => {
+                        return '<p>' + item.title + ' <em>' + item.genres.join(', ') + '</em></p>'
+                    },
+                },
+                source: tvShowsSuggestions.ttAdapter()
+            }).on('typeahead:selected typeahead:autocompleted', (e, item) => {
+                model.assign($scope, item.title);
+            });
+        }
+    };
 });
 
 app.filter('isFuture', () => (date) => !date || parseInt(date) > new Date().getTime() / 1000);

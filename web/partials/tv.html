@@ -2,14 +2,13 @@
 
     <div class="row">
         <blockquote>
-            <p>Let look for your favorite tv show...</p>
+            <p>Lets look for your favorite tv show...</p>
         </blockquote>
     </div>
-
     <div class="row">
         <div class="col-md-12">
             <div class="input-group">
-                <input type="text" class="form-control input-lg" placeholder="The Good Wife, Doctor Who..." ng-model="query" ms-enter="goToShow(query)">
+                <input type="text" class="form-control input-lg" placeholder="The Good Wife, Doctor Who..." ng-model="query" ms-suggest="query" ms-enter="goToShow(query)"/>
                 <span class="input-group-btn">
                     <button class="btn btn-lg btn-success" type="button" ng-click="goToShow(query)">Go</button>
                 </span>
@@ -17,8 +16,18 @@
         </div>
     </div>
 
+    <br/>
+    <br/>
+    <br/>
+
     <div class="row">
-        <div class="col-md-3 tile" ng-repeat="show in shows|limitTo:20">
+        <blockquote>
+            <p>Or explore the most pupular ones.</p>
+        </blockquote>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 tile" ng-repeat="show in shows">
             <a ng-href="#/tv/{{ show.title }}">
                 <h3 class="bg-default">{{ show.title }}</h3>
                 <div style="background-image: url('{{show.images.fanart}}')"></div>

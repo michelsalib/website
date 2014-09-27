@@ -25,6 +25,16 @@ class TraktTv {
     getTrending(): Q.Promise<any> {
         return this.http
             .get('http://api.trakt.tv/shows/trending.json/' + this.traktTvId)
+            .then(r => JSON.parse(r.body).slice(0, 40));
+    }
+
+    suggest(query: string): Q.Promise<any> {
+        return this.http
+            .get('http://api.trakt.tv/search/shows.json/' + this.traktTvId, {
+            	qs: {
+            		query: query
+            	}
+        	})
             .then(r => JSON.parse(r.body));
     }
 

@@ -75,6 +75,10 @@ class Kernel {
             return container.get('tv').getTrending();
         });
 
+        server.get('/tv/suggest/:query', (container: Container, req: express.Request) => {
+            return container.get('tv').suggest(req.param('query'));
+        });
+
         server.get('/soundcloud/:user', (container: Container, req: express.Request) => {
             return container.get('soundCloud').getTracks(req.param('user')).then(r => {
                 container.get('response').set('Content-Type', 'application/xml; charset=utf-8');

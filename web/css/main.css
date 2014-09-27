@@ -2,6 +2,44 @@ body {
     padding-top: 0px;
 }
 
+.twitter-typeahead {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.twitter-typeahead input {
+    border-radius: 0px;
+}
+
+.tt-dropdown-menu {
+    background: white;
+    width: 100%;
+}
+
+.tt-suggestion {
+    color: #464545;
+    height: 40px;
+    padding: 10px 27px 0px 27px;
+    margin: 0px;
+}
+
+.tt-suggestion.tt-cursor {
+    color: white;
+    background: #009871;
+    cursor: pointer;
+}
+
+.tt-suggestion.tt-cursor em{
+    color: white;
+}   
+
+.tt-suggestion em {
+    font-style: italic;
+    font-size: 0.8em;
+    padding-left: 10px;
+    color: #999999;
+}
+
 .tile.ng-enter {
     transition: all 200ms ease;
     transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
