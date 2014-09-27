@@ -57,6 +57,7 @@
                                     'bg-success': !(episode.first_aired|isFuture)
                                 }">{{ episode.episode }}</div>
                                 {{ episode.title }}
+                                <small ng-if="episode.first_aired && episode.first_aired|isFuture">{{ episode.first_aired|fromNow }}</small>
                                 <small><a href="">more...</a></small>
                             </h3>
                         </div>

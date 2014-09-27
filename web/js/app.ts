@@ -151,5 +151,6 @@ app.directive('msSuggest', ($parse) => {
     };
 });
 
-app.filter('isFuture', () => (date) => !date || parseInt(date) > new Date().getTime() / 1000);
+app.filter('isFuture', () => date => !date || parseInt(date) > new Date().getTime() / 1000);
 
+app.filter('fromNow', () => date => moment(date * 1000).fromNow());
