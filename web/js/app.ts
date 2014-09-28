@@ -123,6 +123,21 @@ app.directive('msEnter', () => (scope, element, attrs) => {
     });
 });
 
+app.directive('msBackground', () => {
+    return {
+        link: ($scope, $element: ng.IAugmentedJQuery, $attrs) => {
+            $scope.$watch($attrs.msBackground, bg => {
+                if (bg) {
+                    $element.css('background-image', 'url(' + bg + ')');
+                }
+                else {
+                    $element.css('background-image', '');
+                }
+            })
+        }
+    }
+});
+
 app.directive('msSuggest', ($parse) => {
     return {
         link: ($scope, $element: any, $attrs) => {
@@ -141,7 +156,7 @@ app.directive('msSuggest', ($parse) => {
                 templates: {
                     suggestion: (item) => {
                         return '<p>' + item.title + ' <em>' + item.genres.join(', ') + '</em></p>'
-                    },
+                    }
                 },
                 source: tvShowsSuggestions.ttAdapter()
             }).on('typeahead:selected typeahead:autocompleted', (e, item) => {

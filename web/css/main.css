@@ -88,13 +88,52 @@ body {
     background-color: #464545;
 }
 
-.number{
+.number {
     width: 42px;
     height: 42px;
     font-size: 45px;
     overflow: hidden;
     display: inline-block;
     line-height: initial;
+}
+
+.number .number-top, .number .number-bottom {
+    position: absolute;
+}
+
+.number .number-top {
+    font-size: 40px;
+    height: 30px;
+    overflow: hidden;
+    line-height: 20px;
+    width: 42px;
+}
+
+.number .number-bottom {
+    font-size: 22px;
+    height: 20px;
+    overflow: hidden;
+    width: 35px;
+    margin-top: 22px;
+    margin-left: 7px;
+}
+
+.number.number-small {
+    width: 32px;
+    height: 32px;
+}
+
+.number.number-small .number-top {
+    font-size: 30px;
+    width: 32px;
+    line-height: 15px;
+}
+
+.number.number-small .number-bottom {
+    font-size: 16px;
+    margin-top: 18px;
+    width: 25px;
+    height: 14px;
 }
 
 .episode h3 {

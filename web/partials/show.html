@@ -9,7 +9,10 @@
             'bg-success': info.ratings.percentage,
             'bg-warning': info.ratings.percentage < 60,
             'bg-danger': info.ratings.percentage < 40,
-        }">{{ info.ratings.percentage }}</div>
+        }">
+            <span class="number-top">{{ info.ratings.percentage }}</span>
+            <span class="number-bottom">100</span>
+        </div>
         {{ info.title }}
         <small>{{ info.genres.join(', ') }}</small>
     </h1>
@@ -80,7 +83,15 @@
                         <div id="episode-{{ episode.season }}-{{ episode.episode }}" class="collapse col-md-12">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p><em>{{ episode.first_aired_iso|date:'medium' }}</em></p>
+                                    <div ng-if="!(episode.first_aired|isFuture)" class="number number-small" ng-class="{
+                                        'bg-success': episode.ratings.percentage,
+                                        'bg-warning': episode.ratings.percentage < 60,
+                                        'bg-danger': episode.ratings.percentage < 40,
+                                    }">
+                                        <span class="number-top">{{ episode.ratings.percentage }}</span>
+                                        <span class="number-bottom">100</span>
+                                    </div>
+                                    <em>{{ episode.first_aired_iso|date:'medium' }}</em>
                                 </div>
                             </div>
                             <div class="row">
