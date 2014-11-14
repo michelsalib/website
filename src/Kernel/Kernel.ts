@@ -59,12 +59,22 @@ class Kernel {
     setupServer(server: Server.IServer): void {
 
         server.setup((request: express.Request, response: express.Response) => {
+            console.log('Handle request: ' + request.url);
+
             var container = this.container.clone();
 
             container.constant('request', request);
             container.constant('response', response);
 
             return container;
+        });
+
+        server.tearDown((container, response) => {
+            var request = container.get('request');
+
+            console.log('Answered request: ' + request.url);
+
+            return response;
         });
 
         server.get('/tv/shows/:show', (container: Container, req: express.Request) => {
